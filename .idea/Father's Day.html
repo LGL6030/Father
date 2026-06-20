@@ -6,7 +6,11 @@
     <title>老爸，节日快乐</title>
     <style>
         /* ===== 样式（不用改） ===== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             min-height: 100vh;
             background: linear-gradient(160deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
@@ -20,40 +24,65 @@
         .glow {
             position: fixed;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255,215,0,0.3), transparent 70%);
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3), transparent 70%);
             pointer-events: none;
             animation: drift linear infinite;
             z-index: 0;
         }
         @keyframes drift {
-            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
             10% { opacity: 1; }
             90% { opacity: 1; }
-            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+            100% {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0;
+            }
         }
+
         .card {
             position: relative;
             z-index: 1;
             max-width: 560px;
             width: 100%;
-            background: rgba(255,248,240,0.06);
+            max-height: 92vh;
+            overflow-y: auto;
+            background: rgba(255, 248, 240, 0.06);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,215,150,0.15);
+            border: 1px solid rgba(255, 215, 150, 0.15);
             border-radius: 40px;
             padding: 44px 36px 40px;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
             text-align: center;
             animation: fadeSlide 1s ease-out forwards;
             opacity: 0;
             transform: translateY(30px);
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 215, 150, 0.2) transparent;
         }
+        .card::-webkit-scrollbar {
+            width: 4px;
+        }
+        .card::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .card::-webkit-scrollbar-thumb {
+            background: rgba(255, 215, 150, 0.2);
+            border-radius: 10px;
+        }
+
         @keyframes fadeSlide {
-            to { opacity: 1; transform: translateY(0); }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         .ornament {
             font-size: 28px;
             letter-spacing: 8px;
-            color: rgba(255,215,150,0.3);
+            color: rgba(255, 215, 150, 0.3);
             margin-bottom: 12px;
         }
         .salutation {
@@ -63,10 +92,12 @@
             line-height: 1.2;
             margin-bottom: 4px;
         }
-        .salutation .highlight { color: #f7c948; }
+        .salutation .highlight {
+            color: #f7c948;
+        }
         .sub-greeting {
             font-size: 1rem;
-            color: rgba(255,215,150,0.5);
+            color: rgba(255, 215, 150, 0.5);
             letter-spacing: 6px;
             margin-bottom: 28px;
             font-weight: 300;
@@ -74,12 +105,12 @@
         .divider {
             width: 60px;
             height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(255,215,150,0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 150, 0.4), transparent);
             margin: 0 auto 28px;
         }
         .letter {
             text-align: left;
-            color: rgba(255,245,235,0.9);
+            color: rgba(255, 245, 235, 0.9);
             font-size: 1.05rem;
             line-height: 2.1;
             padding: 0 4px;
@@ -87,27 +118,38 @@
             font-weight: 300;
             letter-spacing: 0.5px;
         }
-        .letter p { margin-bottom: 14px; }
-        .letter .em { color: #f7c948; font-weight: 500; }
+        .letter p {
+            margin-bottom: 14px;
+        }
+        .letter .em {
+            color: #f7c948;
+            font-weight: 500;
+        }
         .signature {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            border-top: 1px solid rgba(255,215,150,0.08);
+            border-top: 1px solid rgba(255, 215, 150, 0.08);
             padding-top: 24px;
-            color: rgba(255,215,150,0.4);
+            color: rgba(255, 215, 150, 0.4);
             font-size: 0.9rem;
         }
-        .signature .name { color: #f5e6d3; font-weight: 500; font-size: 1.05rem; }
-        .signature .date { color: rgba(255,215,150,0.3); }
+        .signature .name {
+            color: #f5e6d3;
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+        .signature .date {
+            color: rgba(255, 215, 150, 0.3);
+        }
         .memory-btn {
             margin-top: 24px;
             padding: 12px 32px;
-            border: 1px solid rgba(255,215,150,0.2);
+            border: 1px solid rgba(255, 215, 150, 0.2);
             border-radius: 50px;
             background: transparent;
-            color: rgba(255,215,150,0.6);
+            color: rgba(255, 215, 150, 0.6);
             font-size: 0.9rem;
             font-family: inherit;
             cursor: pointer;
@@ -115,37 +157,47 @@
             letter-spacing: 2px;
         }
         .memory-btn:hover {
-            background: rgba(255,215,150,0.08);
-            border-color: rgba(255,215,150,0.4);
+            background: rgba(255, 215, 150, 0.08);
+            border-color: rgba(255, 215, 150, 0.4);
             color: #f5e6d3;
             transform: scale(1.02);
         }
         .modal-overlay {
             display: none;
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
             z-index: 999;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
-        .modal-overlay.active { display: flex; }
+        .modal-overlay.active {
+            display: flex;
+        }
         .modal-box {
             max-width: 480px;
             width: 100%;
-            background: rgba(30,30,50,0.95);
+            background: rgba(30, 30, 50, 0.95);
             border-radius: 32px;
             padding: 32px 28px 28px;
-            border: 1px solid rgba(255,215,150,0.1);
+            border: 1px solid rgba(255, 215, 150, 0.1);
             text-align: center;
-            animation: popUp 0.4s cubic-bezier(0.22,1,0.36,1);
+            animation: popUp 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
         @keyframes popUp {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
         .modal-box .photo-area {
             width: 100%;
@@ -158,7 +210,7 @@
             justify-content: center;
             align-items: center;
             font-size: 3rem;
-            color: rgba(255,215,150,0.2);
+            color: rgba(255, 215, 150, 0.2);
         }
         .modal-box .photo-area img {
             width: 100%;
@@ -166,7 +218,7 @@
             object-fit: cover;
         }
         .modal-box .caption {
-            color: rgba(255,245,235,0.7);
+            color: rgba(255, 245, 235, 0.7);
             font-size: 0.95rem;
             line-height: 1.8;
             margin-bottom: 16px;
@@ -174,22 +226,22 @@
         .modal-box .close-btn {
             padding: 8px 28px;
             border: none;
-            background: rgba(255,215,150,0.1);
+            background: rgba(255, 215, 150, 0.1);
             border-radius: 30px;
-            color: rgba(255,215,150,0.6);
+            color: rgba(255, 215, 150, 0.6);
             font-size: 0.85rem;
             cursor: pointer;
             transition: 0.3s;
             font-family: inherit;
         }
         .modal-box .close-btn:hover {
-            background: rgba(255,215,150,0.2);
+            background: rgba(255, 215, 150, 0.2);
             color: #f5e6d3;
         }
         .nav-btn {
-            background: rgba(255,215,150,0.1);
-            border: 1px solid rgba(255,215,150,0.15);
-            color: rgba(255,215,150,0.5);
+            background: rgba(255, 215, 150, 0.1);
+            border: 1px solid rgba(255, 215, 150, 0.15);
+            color: rgba(255, 215, 150, 0.5);
             padding: 6px 16px;
             border-radius: 20px;
             cursor: pointer;
@@ -199,7 +251,7 @@
             margin: 0 4px;
         }
         .nav-btn:hover {
-            background: rgba(255,215,150,0.2);
+            background: rgba(255, 215, 150, 0.2);
             color: #f5e6d3;
         }
         .photo-nav {
@@ -210,13 +262,162 @@
             margin-bottom: 12px;
         }
         .photo-counter {
-            color: rgba(255,215,150,0.3);
+            color: rgba(255, 215, 150, 0.3);
             font-size: 0.8rem;
         }
         @media (max-width: 480px) {
-            .card { padding: 30px 20px 28px; border-radius: 28px; }
-            .salutation { font-size: 2.2rem; }
-            .letter { font-size: 0.95rem; line-height: 2; }
+            .card {
+                padding: 30px 20px 28px;
+                border-radius: 28px;
+                max-height: 94vh;
+            }
+            .salutation {
+                font-size: 2.2rem;
+            }
+            .letter {
+                font-size: 0.95rem;
+                line-height: 2;
+            }
+        }
+
+        /* ===== 结束画面 ===== */
+        .ending-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(160deg, #1a1a2e 0%, #0f1a2e 50%, #1a0f2e 100%);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            animation: fadeIn 0.8s ease;
+        }
+        .ending-overlay.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .ending-box {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            animation: floatUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes floatUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ending-box .big-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            display: block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .ending-box .ending-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #f7c948;
+            margin-bottom: 16px;
+            letter-spacing: 4px;
+        }
+
+        /* ===== 正文居中 ===== */
+        .ending-box .ending-message {
+            font-size: 1.15rem;
+            line-height: 2.2;
+            color: rgba(255, 245, 235, 0.85);
+            margin-bottom: 8px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-align: center;          /* 居中 */
+        }
+        .ending-box .ending-message .highlight {
+            color: #f7c948;
+            font-weight: 500;
+        }
+
+        /* ===== 署名靠右 ===== */
+        .ending-box .ending-signature {
+            text-align: right;
+            font-size: 1.1rem;
+            color: rgba(255, 215, 150, 0.7);
+            margin-top: 20px;
+            margin-bottom: 32px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            line-height: 1.8;
+        }
+        .ending-box .ending-signature .name {
+            color: #f7c948;
+            font-weight: 500;
+        }
+
+        .ending-box .replay-btn {
+            padding: 12px 40px;
+            border: 1px solid rgba(255, 215, 150, 0.25);
+            border-radius: 50px;
+            background: transparent;
+            color: rgba(255, 215, 150, 0.6);
+            font-size: 0.9rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.4s;
+            letter-spacing: 2px;
+        }
+        .ending-box .replay-btn:hover {
+            background: rgba(255, 215, 150, 0.08);
+            border-color: rgba(255, 215, 150, 0.5);
+            color: #f5e6d3;
+        }
+
+        .ending-glow {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.15), transparent 70%);
+            pointer-events: none;
+            animation: driftSlow linear infinite;
+            z-index: 0;
+        }
+        @keyframes driftSlow {
+            0% {
+                transform: translateY(100vh) scale(0.3);
+                opacity: 0;
+            }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -236,8 +437,9 @@
     <div class="letter" id="letterContent">
         <p>小时候，总觉得您是超人，什么都会修，什么都不怕。</p>
         <p>后来才明白，您只是把所有的<span class="em">难</span>都留给了自己，<br>把所有的<span class="em">好</span>都给了我。</p>
-        <p>您的话不多，但每一句都在我心里扎了根。<br>您从不夸我，但我每次回头看，您都在。</p>
-        <p>现在我长大了，换我来做您的靠山。<br>虽然我可能还不太会表达，但您知道的——<br><span class="em">我爱您，爸。</span></p>
+        <p>您是我生命中的第一个偶像，也是这一生永远的偶像。<br>从小就跟着您四处奔走，目的地在变，但不变的是我的超人永远在我的身边。</p>
+        <p>我们在仓库中挥洒过汗水，在汽车上领略过祖国的大好河山，<br>在夜色里沉醉在公园略带花香的空气中。</p>
+        <p>虽然我可能还不太会表达，但您知道的——<br><span class="em">爸，我爱您。</span></p>
     </div>
 
     <div class="signature">
@@ -262,44 +464,81 @@
     </div>
 </div>
 
+<!-- ========================================================== -->
+<!-- 结束画面                                                   -->
+<!-- ========================================================== -->
+<div class="ending-overlay" id="endingOverlay">
+    <div id="endingGlowContainer"></div>
+    <div class="ending-box">
+        <span class="big-icon">🏠</span>
+
+        <div class="ending-title" id="endingTitle">老爸，节日快乐！</div>
+
+        <!-- 正文（居中） -->
+        <div class="ending-message" id="endingMessage">
+            翻完这些照片，才发现我们一起走过了这么多地方。<br>
+            19年来，您用您的肩膀扛起了一片天，我得以茁壮成长。<br>
+            感谢您一直牵着我的手，看遍山河，历遍岁月。<br>
+            <span class="highlight">愿您永远健康、快乐。</span><br>
+            儿子永远爱您。❤️
+        </div>
+
+        <!-- ===== 署名：靠右 ===== -->
+        <div class="ending-signature">
+            在广州的儿子：<span class="name">黎广霖</span>
+        </div>
+
+        <button class="replay-btn" id="replayBtn">🔄 重新看一遍</button>
+    </div>
+</div>
+
 <script>
     // ==========================================================
-    // ⭐ 配置区：只改这里，其他不要动
+    // ⭐ 配置区：只改这里
     // ==========================================================
 
-    // 1. 信的内容（每一段用 <p> 包起来）
     const letterHTML = `
         <p>小时候，总觉得您是超人，什么都会修，什么都不怕。</p>
         <p>后来才明白，您只是把所有的<span class="em">难</span>都留给了自己，<br>把所有的<span class="em">好</span>都给了我。</p>
-        <p>您的话不多，但每一句都在我心里扎了根。<br>您从不夸我，但我每次回头看，您都在。</p>
-        <p>现在我长大了，换我来做您的靠山。<br>虽然我可能还不太会表达，但您知道的——<br><span class="em">我爱您，爸。</span></p>
+        <p>您是我生命中的第一个偶像，也是这一生永远的偶像。<br>从小就跟着您四处奔走，目的地在变，但不变的是我的超人永远在我的身边。</p>
+        <p>我们在仓库中挥洒过汗水，在汽车上领略过祖国的大好河山，<br>在夜色里沉醉在公园略带花香的空气中。</p>
+        <p>虽然我可能还不太会表达，但您知道的——<br><span class="em">爸，我爱您。</span></p>
     `;
 
-    // 2. 照片列表
-    //    📌 路径规则（假设 index.html 在仓库根目录）：
-    //    - 照片和 index.html 同目录 → 'dad1.jpg'
-    //    - 照片在 images 文件夹     → 'images/dad1.jpg'
-    //    - 照片在 images/2024/ 下   → 'images/2024/dad1.jpg'
     const photos = [
         { url: 'images/dad1.jpg', caption: '你的爱，藏在每一次西餐厅的美味中' },
         { url: 'images/dad2.jpg', caption: '2023年，我们在北帝山' },
         { url: 'images/dad3.jpg', caption: '2024年的寒假，我们在武汉' },
         { url: 'images/dad4.jpg', caption: '2024年的暑假，我们在贵州荔波' },
         { url: 'images/dad5.jpg', caption: '2025年的暑假，我们在湖南张家界天门山' },
-        { url: 'images/dad6.jpg', caption: '变化的是地点，不变的是你爱我的心，愿我们一家人永远平平安安，幸福美满！' }
+        { url: 'images/dad6.jpg', caption: '变化的是地点，不变的是你爱我的心，愿我们一家人永远平平安安，幸福美满!' }
     ];
+
+    const endingTitle = '老爸，节日快乐！';
+    const endingMessage = `
+        翻完这些照片，才发现我们一起走过了这么多地方。<br>
+        19年来，您用您的肩膀扛起了一片天，我得以茁壮成长。<br>
+        感谢您一直牵着我的手，看遍山河，历遍岁月。<br>
+        <span class="highlight">愿您永远健康、快乐。</span><br>
+        儿子永远爱您。❤️
+    `;
 
     // ==========================================================
     // 以下代码不用改
     // ==========================================================
 
     document.getElementById('letterContent').innerHTML = letterHTML;
+    document.getElementById('endingTitle').textContent = endingTitle;
+    document.getElementById('endingMessage').innerHTML = endingMessage;
 
     let currentIndex = 0;
     const modal = document.getElementById('memoryModal');
     const photoDisplay = document.getElementById('photoDisplay');
     const captionEl = document.getElementById('memoryCaption');
     const counterEl = document.getElementById('photoCounter');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const endingOverlay = document.getElementById('endingOverlay');
 
     function renderPhoto(index) {
         const p = photos[index];
@@ -307,6 +546,11 @@
         photoDisplay.innerHTML = `<img src="${p.url}" alt="回忆照片">`;
         captionEl.textContent = p.caption;
         counterEl.textContent = `${index + 1} / ${photos.length}`;
+        if (index === photos.length - 1) {
+            nextBtn.textContent = '🎉 看彩蛋';
+        } else {
+            nextBtn.textContent = '下一张 ›';
+        }
     }
 
     document.getElementById('memoryBtn').addEventListener('click', function() {
@@ -324,15 +568,23 @@
         setTimeout(() => { this.textContent = '📷 翻开我们的回忆'; }, 1500);
     });
 
-    document.getElementById('prevBtn').addEventListener('click', function() {
+    prevBtn.addEventListener('click', function() {
         if (photos.length === 0) return;
-        currentIndex = (currentIndex - 1 + photos.length) % photos.length;
-        renderPhoto(currentIndex);
+        if (currentIndex > 0) {
+            currentIndex--;
+            renderPhoto(currentIndex);
+        }
     });
 
-    document.getElementById('nextBtn').addEventListener('click', function() {
+    nextBtn.addEventListener('click', function() {
         if (photos.length === 0) return;
-        currentIndex = (currentIndex + 1) % photos.length;
+        if (currentIndex === photos.length - 1) {
+            modal.classList.remove('active');
+            endingOverlay.classList.add('active');
+            createEndingGlows();
+            return;
+        }
+        currentIndex++;
         renderPhoto(currentIndex);
     });
 
@@ -344,7 +596,13 @@
         if (e.target === this) this.classList.remove('active');
     });
 
-    // 背景萤火虫
+    document.getElementById('replayBtn').addEventListener('click', function() {
+        endingOverlay.classList.remove('active');
+        currentIndex = 0;
+        renderPhoto(0);
+        modal.classList.add('active');
+    });
+
     (function createGlows() {
         const container = document.getElementById('glowContainer');
         for (let i = 0; i < 20; i++) {
@@ -359,6 +617,22 @@
             container.appendChild(dot);
         }
     })();
+
+    function createEndingGlows() {
+        const container = document.getElementById('endingGlowContainer');
+        container.innerHTML = '';
+        for (let i = 0; i < 30; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'ending-glow';
+            const size = 40 + Math.random() * 100;
+            dot.style.width = size + 'px';
+            dot.style.height = size + 'px';
+            dot.style.left = Math.random() * 100 + '%';
+            dot.style.animationDuration = (15 + Math.random() * 25) + 's';
+            dot.style.animationDelay = (Math.random() * 15) + 's';
+            container.appendChild(dot);
+        }
+    }
 </script>
 </body>
 </html>
