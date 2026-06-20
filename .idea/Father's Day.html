@@ -230,7 +230,9 @@
     <div class="sub-greeting">— 父亲节 · 2026 —</div>
     <div class="divider"></div>
 
-    <!-- ===== 信件内容：改这里 ===== -->
+    <!-- ========================================================== -->
+    <!-- 信件内容：改这里（每一段用 <p> 包起来）                      -->
+    <!-- ========================================================== -->
     <div class="letter" id="letterContent">
         <p>小时候，总觉得您是超人，什么都会修，什么都不怕。</p>
         <p>后来才明白，您只是把所有的<span class="em">难</span>都留给了自己，<br>把所有的<span class="em">好</span>都给了我。</p>
@@ -246,7 +248,7 @@
     <button class="memory-btn" id="memoryBtn">📷 翻开我们的回忆</button>
 </div>
 
-<!-- 弹窗：照片相册（支持多张） -->
+<!-- 弹窗：照片相册 -->
 <div class="modal-overlay" id="memoryModal">
     <div class="modal-box">
         <div class="photo-area" id="photoDisplay">🖼️</div>
@@ -262,7 +264,7 @@
 
 <script>
     // ==========================================================
-    // ⭐ 你只需要改这里（其他代码不要动）
+    // ⭐ 配置区：只改这里，其他不要动
     // ==========================================================
 
     // 1. 信的内容（每一段用 <p> 包起来）
@@ -273,21 +275,22 @@
         <p>现在我长大了，换我来做您的靠山。<br>虽然我可能还不太会表达，但您知道的——<br><span class="em">我爱您，爸。</span></p>
     `;
 
-    // 2. 照片列表（按顺序显示，支持 jpg/png/webp）
-    //    📌 路径规则：
-    //    - 和 index.html 同目录：直接写文件名 'dad1.jpg'
-    //    - 在 images 文件夹里：写 'images/dad1.jpg'
+    // 2. 照片列表
+    //    📌 路径规则（假设 index.html 在仓库根目录）：
+    //    - 照片和 index.html 同目录 → 'dad1.jpg'
+    //    - 照片在 images 文件夹     → 'images/dad1.jpg'
+    //    - 照片在 images/2024/ 下   → 'images/2024/dad1.jpg'
     const photos = [
         { url: 'images/dad1.jpg', caption: '你的爱，藏在每一次西餐厅的美味中' },
         { url: 'images/dad2.jpg', caption: '2023年，我们在北帝山' },
-        { url: 'images/dad3.jpg', caption: '2024年的寒假，我们在武汉' }
-        { url: 'images/dad4.jpg', caption: '2024年的暑假，我们在贵州荔波' }
-        { url: 'images/dad5.jpg', caption: '2025年的暑假，我们在湖南张家界天门山' }
+        { url: 'images/dad3.jpg', caption: '2024年的寒假，我们在武汉' },
+        { url: 'images/dad4.jpg', caption: '2024年的暑假，我们在贵州荔波' },
+        { url: 'images/dad5.jpg', caption: '2025年的暑假，我们在湖南张家界天门山' },
         { url: 'images/dad6.jpg', caption: '变化的是地点，不变的是你爱我的心，愿我们一家人永远平平安安，幸福美满！' }
     ];
 
     // ==========================================================
-    // 以下代码不用改（自动处理显示逻辑）
+    // 以下代码不用改
     // ==========================================================
 
     document.getElementById('letterContent').innerHTML = letterHTML;
@@ -301,11 +304,8 @@
     function renderPhoto(index) {
         const p = photos[index];
         if (!p) return;
-        // 显示图片
         photoDisplay.innerHTML = `<img src="${p.url}" alt="回忆照片">`;
-        // 显示文字说明
         captionEl.textContent = p.caption;
-        // 更新计数器
         counterEl.textContent = `${index + 1} / ${photos.length}`;
     }
 
